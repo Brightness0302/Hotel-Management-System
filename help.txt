@@ -1,0 +1,35 @@
+In order to download and run the project ( It is assumed that Python 3 is already installed ):
+Install Django and Apps:
+pip install Django==3.1.4
+pip install django-phonenumber-field[phonenumbers]
+Needed to create roles and admin account to add new employee accounts
+Change Directory to Django---Hotel-Management-System/HMS and start the Shell:
+python3 manage.py shell
+Then execute these, one by one:
+from django.contrib.auth.models import Group, User
+from accounts.models import Employee
+Group.objects.create(name='admin')
+Group.objects.create(name='manager')
+Group.objects.create(name='receptionist')
+Group.objects.create(name='staff')
+Group.objects.create(name='guest')
+user = User.createuser=User.objects.create_user('admin', password='admin123')
+group = Group.objects.get(name="admin")
+user.groups.add(group)
+admin = Employee(user=user, salary=0)
+admin.save()
+Finally:
+Exit the shell and set the database:
+python3 manage.py makemigrations
+python3 manage.py migrate
+Then, start the surver
+
+python3 manage.py runserver
+
+
+
+1. You need to remove the salary field from all access type
+2. adding a Option to choose currency MVR & USD. conversion should happen in backend MVR/USD
+1 USD = 15.42 MVR
+3. Adding the booking form so that all access types can book a room.
+4. the booking form should have the fileds from the below workbook file
